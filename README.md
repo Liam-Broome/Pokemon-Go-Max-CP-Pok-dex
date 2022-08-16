@@ -5,3 +5,5 @@ A simple PHP project that I mashed together to view the max CP of certain Pokemo
 a simple format. 
 
 It contains, Pokemonm Pokedex ID, Pokemon name, Max CP and an image of the Pokemon.
+
+Feel free to use it or build ontop of it, no simple sites out there currently give you the straight forward answer :) 
