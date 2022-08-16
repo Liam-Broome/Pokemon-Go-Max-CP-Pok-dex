@@ -8,9 +8,6 @@
 		border: solid black;
 	}
 
-	table, td, th {
-	}
-
 	table {
 		border-collapse: collapse;
 		display: flex;
@@ -60,7 +57,8 @@
 		background-color: #E3350D;
 	}
 
-</style>
+</style>#
+
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
