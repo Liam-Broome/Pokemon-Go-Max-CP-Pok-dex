@@ -66,32 +66,25 @@
 <?php 
 
 	$response = file_get_contents('https://pogoapi.net/api/v1/pokemon_max_cp.json');
-	$table = '<button id="button">goto</button>';
 	$table .= '<table>';
 	$table .= '<th colspan="3"></th>';
 	foreach (json_decode($response) AS $key => $value){
 		if ($value->form == 'Normal'){
-			$table .= '<tr id="' . $value->pokemon_id . '">';
-			$table .= '<td class="pokemon-background bordered"><img src="' . 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' . $value->pokemon_id . '.png"/></td>';  		
-			$table .= '<td class="bordered red" colspan="2">';
-			$table .= '<span>Max CP</span><br>'; 
-			$table .=  $value->max_cp . '</td>';	
+			$table .= '<tr>';
+				$table .= '<td class="pokemon-background bordered"><img src="' . 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' . $value->pokemon_id . '.png"/></td>';  		
+				$table .= '<td class="bordered red" colspan="2">';
+				$table .= '<span>Max CP</span><br>'; 
+				$table .=  $value->max_cp . '</td>';	
 			$table .=  '</tr>';	
 			$table .=  '<tr>';
-			$table .=  '<td class="bordered yellow" style="border-right:none;">' . $value->pokemon_name . '<br><span>#'; 
-			$table .= sprintf("%03d", $value->pokemon_id); 
-			$table .=  '</span></td>';	
-			$table .=  '<td colspan="2" class="bordered yellow" style="border-left:none;"></td>';	
+				$table .=  '<td class="bordered yellow" style="border-right:none;">' . $value->pokemon_name . '<br><span>#'; 
+				$table .= sprintf("%03d", $value->pokemon_id); 
+				$table .=  '</span></td>';	
+				$table .=  '<td colspan="2" class="bordered yellow" style="border-left:none;"></td>';	
 			$table .=  '</tr>';	
 		}
 	}
 	$table .=  '</table><script>';
-	$table .= '$("#button").click(function() {';
-	$table .= '$("html, body").animate({ ';
-	$table .= 'console.log("dsfs");';
-	$table .= 'scrollTop: $("#50").offset().top';
-	$table .= '}, 2000);';
-	$table .= '});</script>';
 	die($table);
 ?>
 
