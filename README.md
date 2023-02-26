@@ -1,9 +1,7 @@
-# Pokemon-Go-Max-CP-Pokedex
-A Pokédex of the current Pokemon within Pokemon Go and their max CP's
+# Pokemon Go Max CP Pokedex
 
-A simple PHP project that I mashed together to view the max CP of certain Pokemon as this wasn't publicaly available in
-a simple format. 
+This is a simple PHP project that generates a table of the current Pokemon in Pokemon Go and their max CP values. The data is sourced from the URL "https://pogoapi.net/api/v1/pokemon_max_cp.json", and the table includes the Pokemon's Pokedex ID, name, max CP, and an image of the Pokemon.
 
-It contains, Pokemon Pokedex ID, Pokemon name, Max CP and an image of the Pokemon.
+## Getting Started
 
-Feel free to use it or build ontop of it, no simple sites out there currently give you the straight forward answer 
+To use this project, you will need to have a web server running PHP. Simply copy the contents of the provided script into a new PHP file, and then run the file on your server to generate the HTML table.
