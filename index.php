@@ -1,90 +1,47 @@
-<style>
-
-	body {
-		background: -webkit-linear-gradient(180deg, #9bcc50 50%, #9bcc50 50%)
-	}
-
-	.bordered {
-		border: solid black;
-	}
-
-	table {
-		border-collapse: collapse;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	th {
-		font-size: 150%;
-	}
-
-	td {
-		text-align: center;
-		font-size: 145%;
-	}
-
-	th, td {
-		padding: 5px;
-		font-family: arial,sans-serif;
-		color: #000000;
-	}
-
-	img {
-		width:150px;
-		height:150px;
-	}
-
-	.pokemon-background {
-		background-color: #30a7d7;
-	}
-
-	span {
-		font-size: 50%;
-		color: #000000;
-		font-family: arial,sans-serif;
-	}
-
-	.green {
-		background: -webkit-linear-gradient(180deg, #9bcc50 50%, #9bcc50 50%)
-	}
-	
-	.yellow {
-		background-color: #ffcb07;
-	}
-
-	.red {
-		background-color: #E3350D;
-	}
-
-</style>#
-
-<head>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-</head>
-
 <?php 
+    use GuzzleHttp\Client;
+    require_once 'vendor/autoload.php';
 
-	$response = file_get_contents('https://pogoapi.net/api/v1/pokemon_max_cp.json');
-	$table .= '<table>';
-	$table .= '<th colspan="3"></th>';
-	foreach (json_decode($response) AS $key => $value){
-		if ($value->form == 'Normal'){
-			$table .= '<tr>';
-				$table .= '<td class="pokemon-background bordered"><img src="' . 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' . $value->pokemon_id . '.png"/></td>';  		
-				$table .= '<td class="bordered red" colspan="2">';
-				$table .= '<span>Max CP</span><br>'; 
-				$table .=  $value->max_cp . '</td>';	
-			$table .=  '</tr>';	
-			$table .=  '<tr>';
-				$table .=  '<td class="bordered yellow" style="border-right:none;">' . $value->pokemon_name . '<br><span>#'; 
-				$table .= sprintf("%03d", $value->pokemon_id); 
-				$table .=  '</span></td>';	
-				$table .=  '<td colspan="2" class="bordered yellow" style="border-left:none;"></td>';	
-			$table .=  '</tr>';	
-		}
-	}
-	$table .=  '</table><script>';
-	die($table);
-?>
+    //Endpoint To The PGOAPI Max CP API.
+    const POGOAPI_MAX_CP_URL = 'https://pogoapi.net/api/v1/pokemon_max_cp.json';
 
+    //Set Default Form.
+    const DEFAULT_POKEMON_FORM = 'Normal';
+
+    //Final Array For The Pokemon Collection.
+    $pokemonCollection = array();
+
+    if (class_exists('\GuzzleHttp\Client')){
+
+        $client = new Client();
+        $response = $client->request('GET', POGOAPI_MAX_CP_URL);	
+        
+        //Was the request successful?
+        if ($response->getStatusCode() == 200) {
+
+            //Make sure the response returns without any JSON encoding errors. 
+            if (json_last_error() === JSON_ERROR_NONE) {
+
+                //JSON Data From Request.
+                $fetchedPokemonCollection = json_decode($response->getBody()->getContents());
+
+                //Iterate over the Pokemon.
+                foreach ($fetchedPokemonCollection AS $key => $pokemon){
+                    if ($pokemon->form == POKEMON_FORM){
+                        $formattedPokemon = array(
+                            'id' => $pokemon->pokemon_id,
+                            'name' => $pokemon->pokemon_name,
+                            'max_cp' => $pokemon->max_cp,
+                            'image_url' => 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' . $pokemon->pokemon_id . '.png'
+                        );
+                        $pokemonCollection[] = $formattedPokemon;
+                    }
+                }
+            }
+        } else {
+            echo 'Request to the endpoint ' . MAX_CP_URL . ' was not successful. Error ' . $response->getStatusCode();
+        }
+
+    } else {
+        echo 'Guzzle Is Not Installed.';
+    }
