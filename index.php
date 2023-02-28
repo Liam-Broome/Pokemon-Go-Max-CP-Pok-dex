@@ -31,8 +31,7 @@
                         $formattedPokemon = array(
                             'id' => $pokemon->pokemon_id,
                             'name' => $pokemon->pokemon_name,
-                            'max_cp' => $pokemon->max_cp,
-                            'image_url' => 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' . $pokemon->pokemon_id . '.png'
+                            'max_cp' => $pokemon->max_cp
                         );
                         $pokemonCollection[] = $formattedPokemon;
                     }
