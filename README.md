@@ -1,7 +1,25 @@
 # Pokemon Go Max CP Pokedex
 
-This is a simple PHP project that generates a table of the current Pokemon in Pokemon Go and their max CP values. The data is sourced from the URL "https://pogoapi.net/api/v1/pokemon_max_cp.json", and the table includes the Pokemon's Pokedex ID, name, max CP, and an image of the Pokemon.
+A simple PHP script that retrieves and processes data from the [Pokemon Max CP API](https://pogoapi.net/).
 
-## Getting Started
+## Requirements
 
-To use this project, you will need to have a web server running PHP. Simply copy the contents of the provided script into a new PHP file, and then run the file on your server to generate the HTML table.
+- PHP 7.0 or later
+- [Guzzle HTTP client](https://docs.guzzlephp.org/en/stable/overview.html)
+
+## Installation
+
+1. Clone or download the repository.
+2. Install the required dependencies with [Composer](https://getcomposer.org/): `composer install`
+3. Run the script in a web server or from the command line: `php index.php`
+
+## Usage
+
+The script retrieves data from the API endpoint and processes it to generate an array of Pokemon with their max CP. By default, it retrieves only Pokemon with the "Normal" form, but this can be changed by modifying the `DEFAULT_POKEMON_FORM` constant in the script.
+
+The final result is stored in the `$pokemonCollection` array, which can be used to display the data in any desired format.
+
+## Credits
+
+- [Guzzle HTTP client](https://docs.guzzlephp.org/en/stable/overview.html)
+- [Pokemon Max CP API](https://pogoapi.net/)
