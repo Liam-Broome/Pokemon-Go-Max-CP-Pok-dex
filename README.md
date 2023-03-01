@@ -22,4 +22,4 @@ The final result is stored in the `$pokemonCollection` array, which can be used 
 ## Credits
 
 - [Guzzle HTTP client](https://docs.guzzlephp.org/en/stable/overview.html)
-- [PokgpAPI](https://pogoapi.net/)
+- [PoGoAPI](https://pogoapi.net/)
