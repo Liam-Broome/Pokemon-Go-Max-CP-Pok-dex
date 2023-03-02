@@ -27,13 +27,12 @@
 
                 //Iterate over the Pokemon.
                 foreach ($fetchedPokemonCollection AS $key => $pokemon){
-                    if ($pokemon->form == POKEMON_FORM){
-                        $formattedPokemon = array(
+                    if ($pokemon->form == DEFAULT_POKEMON_FORM){
+                        $pokemonCollection[] = array(
                             'id' => $pokemon->pokemon_id,
                             'name' => $pokemon->pokemon_name,
                             'max_cp' => $pokemon->max_cp
                         );
-                        $pokemonCollection[] = $formattedPokemon;
                     }
                 }
             }
